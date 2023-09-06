@@ -1,7 +1,7 @@
 public class Sorter {
     public static void main(String[] args) {
         int[] numbers = {5, 1, 4, 2, 8};
-        bubbleSort(numbers);
+        selectionSort(numbers);
 
         System.out.println("Sorted Array:");
         for (int num : numbers) {
@@ -9,21 +9,23 @@ public class Sorter {
         }
     }
 
-    public static void bubbleSort(int[] arr) {
+    public static void selectionSort(int[] arr) {
         int n = arr.length;
-        boolean swapped;
-        do {
-            swapped = false;
-            for (int i = 1; i < n; i++) {
-                if (arr[i - 1] > arr[i]) {
-                    // Swap arr[i-1] and arr[i]
-                    int temp = arr[i - 1];
-                    arr[i - 1] = arr[i];
-                    arr[i] = temp;
-                    swapped = true;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+
+            // Find the index of the minimum element in the unsorted part of the array
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
                 }
             }
-        } while (swapped);
+
+            // Swap the minimum element with the first element in the unsorted part
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
     }
 }
-
